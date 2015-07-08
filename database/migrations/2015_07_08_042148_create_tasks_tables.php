@@ -42,6 +42,26 @@ class CreateTasksTables extends Migration
             $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
         });
+
+        Schema::create('logs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')->references('id')->on('tasks')->onDelete('cascade');
+            $table->string('name')->default('');
+            $table->string('slug')->default('');
+            $table->text('description')->default('');
+            $table->integer('time_spent')->default(60);
+            $table->timestamps();
+        });
+
+        Schema::create('tags_logs', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('log_id')->unsigned()->default(0);
+            $table->foreign('log_id')->references('id')->on('logs');
+            $table->integer('tag_id')->unsigned()->default(0);
+            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -51,6 +71,9 @@ class CreateTasksTables extends Migration
      */
     public function down()
     {
+        Schema::drop('tags_logs');
+        Schema::drop('logs');
+        Schema::drop('tags_tasks');
         Schema::drop('tags');
         Schema::drop('tasks');
     }
