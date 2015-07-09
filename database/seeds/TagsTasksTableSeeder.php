@@ -13,13 +13,13 @@ class TagsTasksTableSeeder extends Seeder {
     public function run()
     {
         // Wipe the table clean before populating
-        DB::table('tags')->delete();
+        DB::table('tags_tasks')->delete();
 
         $tasks = array(
-            ['id' => 1, 'task_id' => 1, 'tags_id' => 1, 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 1, 'task_id' => 1, 'tag_id' => 1, 'created_at' => new DateTime, 'updated_at' => new DateTime],
         );
 
-        DB::table('tags')->insert($tasks);
+        DB::table('tags_tasks')->insert($tasks);
     }
 
 }

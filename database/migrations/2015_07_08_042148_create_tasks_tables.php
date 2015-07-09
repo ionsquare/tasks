@@ -21,6 +21,7 @@ class CreateTasksTables extends Migration
             $table->text('description')->default('');
             $table->integer('priority')->default(100);
             $table->integer('size')->default(60);
+            $table->integer('status')->default(0);
             $table->timestamp('snooze_until')->nullable();
             $table->timestamp('due_at')->nullable();
             $table->timestamp('completed_at')->nullable();
@@ -36,9 +37,9 @@ class CreateTasksTables extends Migration
 
         Schema::create('tags_tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('task_id')->unsigned()->default(0);
+            $table->integer('task_id')->unsigned();
             $table->foreign('task_id')->references('id')->on('tasks');
-            $table->integer('tag_id')->unsigned()->default(0);
+            $table->integer('tag_id')->unsigned();
             $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
         });

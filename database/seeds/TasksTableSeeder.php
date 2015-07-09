@@ -17,9 +17,9 @@ class TasksTableSeeder extends Seeder {
 
         $projects = array(
             [   'id' => 1,
-                'name' => 'Sample Task',
-                'slug' => 'sample-task',
-                'description' => 'Sample task description',
+                'name' => 'Add some tasks',
+                'slug' => 'add-some-tasks',
+                'description' => 'Start working more efficiently by adding some tasks!',
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime
             ],
