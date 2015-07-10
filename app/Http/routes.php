@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('tasks', 'TasksController');
+Route::bind('tasks', function($value, $route){
+        // This makes tasks use the slug in the url instead of ID
+        return App\Task::whereSlug($value)->first();
+});
+
