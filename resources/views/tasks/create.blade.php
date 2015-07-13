@@ -1,6 +1,10 @@
-@extends('welcome')
+@extends('layouts.default')
 
 @section('content')
-    This is my /resources/views/tasks/create.blade.php file
+    <h2>Create Task</h2>
+
+        {!! Form::model(new App\Project, ['route' => ['tasks.store']]) !!}
+            @include('tasks/partials/_form', ['submit_text' => 'Create Task'])
+        {!! Form::close() !!}
 @endsection
 
